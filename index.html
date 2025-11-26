@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Репетитор английского языка</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1: #ff7eb3; /* pink */
+      --bg2: #7afcff; /* aqua */
+      --accent: #ffd166; /* warm yellow */
+      --dark: #0f1724;
+      --glass: rgba(255,255,255,0.12);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color:var(--dark);
+      background: radial-gradient(1200px 600px at 10% 10%, var(--bg1), transparent 20%),
+                  radial-gradient(1000px 500px at 90% 90%, var(--bg2), transparent 18%),
+                  linear-gradient(180deg,#fff 0%, #f4fbff 100%);
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .card{
+      width:100%;
+      max-width:1100px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.80));
+      border-radius:20px;
+      box-shadow: 0 12px 40px rgba(10,20,40,0.12);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:0;
+      backdrop-filter: blur(6px) saturate(1.05);
+    }
+    @media(max-width:900px){
+      .card{grid-template-columns:1fr;}
+    }
+
+    /* Left (main) */
+    .hero{
+      padding:48px 56px;
+      position:relative;
+    }
+    .badge{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      background:var(--accent);
+      color:var(--dark);
+      font-weight:700;
+      padding:8px 14px;
+      border-radius:999px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      width:fit-content;
+      transform:translateZ(0);
+    }
+    h1{
+      font-size:40px;
+      margin:18px 0 8px;
+      line-height:1.02;
+      letter-spacing:-0.5px;
+    }
+    .sub{
+      font-size:16px;
+      color:#263238;
+      margin-bottom:18px;
+      max-width:60ch;
+    }
+    .cta-row{display:flex;gap:14px;align-items:center;margin:22px 0}
+    .btn{
+      padding:14px 20px;
+      border-radius:12px;
+      border:0;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    }
+    .btn-primary{background:linear-gradient(90deg,#ff7eb3,#ffd166);color:#08203b}
+    .btn-outline{background:transparent;border:2px solid rgba(8,32,59,0.06);}
+    .features{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .pill{background:var(--glass);padding:10px 12px;border-radius:10px;font-weight:600}
+
+    /* Right (sidebar) */
+    .sidebar{
+      padding:30px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.6));
+      border-left: 1px dashed rgba(8,32,59,0.04);
+    }
+    .photo{
+      width:120px;height:120px;border-radius:16px;overflow:hidden;margin-bottom:12px;box-shadow: 0 8px 30px rgba(8,32,59,0.06);
+      background: linear-gradient(135deg,#ffd166,#ff7eb3);
+      display:flex;align-items:center;justify-content:center;font-family: 'Pacifico';font-size:24px;color:#08203b
+    }
+    .name{font-weight:800;font-size:20px}
+    .role{color:#274059;margin-bottom:12px}
+    .meta{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+    .meta-item{display:flex;gap:10px;align-items:center}
+
+    /* cards list */
+    .service{background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));padding:12px;border-radius:12px;box-shadow:0 6px 18px rgba(10,20,40,0.04)}
+    .services{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    @media(max-width:640px){.services{grid-template-columns:1fr}}
+
+    /* fun floating shapes */
+    .shape{position:absolute;border-radius:50%;opacity:0.14;filter:blur(22px);transform:translateZ(0)}
+    .s1{width:220px;height:220px;background:#ffd166;left:-40px;top:-40px}
+    .s2{width:160px;height:160px;background:#7afcff;right:40px;bottom:60px}
+    .s3{width:120px;height:120px;background:#ff7eb3;right:20px;top:30%}
+
+    /* footer */
+    footer{margin-top:26px;padding-top:18px;border-top:1px dashed rgba(8,32,59,0.04);display:flex;justify-content:space-between;align-items:center}
+
+    /* small interactions */
+    .pulse{animation:pulse 3s ease-in-out infinite}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.045)}100%{transform:scale(1)}}
+
+    .contact-form{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    input, textarea{padding:12px;border-radius:10px;border:1px solid rgba(8,32,59,0.06);font-size:14px}
+    textarea{min-height:100px;resize:vertical}
+
+    .testimonials{margin-top:18px;display:flex;flex-direction:column;gap:12px}
+    .testimonial{padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(250,250,255,0.7), rgba(255,255,255,0.6));box-shadow:0 8px 30px rgba(10,20,40,0.03)}
+
+    /* subtle entrance */
+    .fade-in{animation:fadein 0.9s ease both}
+    @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="card fade-in" role="main" aria-label="Сайт репетитора английского языка">
+    <div class="hero">
+      <div class="shape s1"></div>
+      <div class="shape s2"></div>
+      <div class="shape s3"></div>
+
+      <div class="badge pulse">Online</div>
+      <h1>English with <span style="color:var(--accent)">Liudmila</span></h1>
+      <p class="sub">Весёлые, яркие уроки английского для учеников любого уровня — разговорная практика, подготовка к экзаменам, бизнес-английский и детские занятия. Индивидуальный подход и быстрый прогресс.</p>
+
+      <div class="cta-row">
+        <button class="btn btn-primary" onclick="document.getElementById('contact-form').scrollIntoView({behavior: 'smooth'});">Записаться на пробный урок</button>
+        <button class="btn btn-outline">Подробнее об уроках</button>
+      </div>
+
+      <div class="features">
+        <div class="pill">Гарантия результата</div>
+        <div class="pill">Адаптивная программа</div>
+        <div class="pill">Материалы в подарок</div>
+        <div class="pill">Онлайн/оффлайн</div>
+      </div>
+
+      <section class="services" aria-label="Услуги">
+  <div class="service">
+    <strong>Разговорная практика</strong>
+    <div style="font-size:13px;color:#354b57;margin-top:6px">Легкие и живые занятия для уверенного общения.</div>
+  </div>
+  <div class="service">
+    <strong>Детские уроки</strong>
+    <div style="font-size:13px;color:#354b57;margin-top:6px">Игровой и доброжелательный формат обучения.</div>
+  </div>
+</section>
+
+      <section class="pricing" style="margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+  <div class="service">
+    <strong>Индивидуальный урок (60 мин)</strong>
+    <div style="font-size:14px;color:#334e58;margin-top:6px">1200 ₽</div>
+  </div>
+  <div class="service">
+    <strong>Разговорная практика (45 мин)</strong>
+    <div style="font-size:14px;color:#334e58;margin-top:6px">900 ₽</div>
+  </div>
+  <div class="service">
+    <strong>Детские уроки (30 мин)</strong>
+    <div style="font-size:14px;color:#334e58;margin-top:6px">700 ₽</div>
+  </div>
+  <div class="service" style="border:2px solid var(--accent)">
+    <strong>Пробный урок (30 мин)</strong>
+    <div style="font-size:14px;color:#334e58;margin-top:6px">Бесплатно</div>
+  </div>
+</section>
+
+<div class="testimonials">
+        <div class="testimonial">
+          <strong>Анна</strong>
+          <div style="font-size:13px;color:#334e58;margin-top:6px">"За 4 месяца подготовилась к FCE и сдала! Уроки очень живые и полезные."</div>
+        </div>
+        <div class="testimonial">
+          <strong>Иван</strong>
+          <div style="font-size:13px;color:#334e58;margin-top:6px">"Разговорная практика помогла заговорить свободнее. Отличный репетитор!"</div>
+        </div>
+      </div>
+
+      <footer>
+        <div style="font-size:13px;color:#274059">Готовы начать? Нажмите «Записаться на пробный урок» — первый урок со скидкой!</div>
+        <div style="font-size:12px;color:#506d75">© <span id="year"></span> English with Liudmila</div>
+      </footer>
+    </div>
+
+    <aside class="sidebar">
+      <div style="display:flex;align-items:center;gap:14px">
+        <!-- фото/лого удалено -->
+        <div>
+          <div class="name">Liudmila</div>
+          <div class="role">Репетитор английского — онлайн и оффлайн</div>
+          <div style="font-size:13px;color:#334e58">Опыт: <strong>20 лет</strong></div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <div class="meta-item"><strong>📍 Город:</strong><span>любой</span></div>
+        <div class="meta-item"><strong>📅 Доступность:</strong><span>Будни, вечера</span></div>
+        <div class="meta-item"><strong>💬 Языки:</strong><span>Английский</span></div>
+      </div>
+
+      <h3 style="margin-top:16px">Контакты</h3>
+      <div style="font-size:14px;color:#274059">Email: <a href="mailto:you@example.com">lyusha81@yandex.ru</a></div>
+      <div style="font-size:14px;color:#274059">Телефон: <a href="tel:+380000000000">+7 (968) 956-44-96</a></div>
+
+      <form id="contact-form" class="contact-form" onsubmit="event.preventDefault(); alert('Форма отправлена — замените на реальную интеграцию.');">
+        <input type="text" placeholder="Ваше имя" required />
+        <input type="email" placeholder="Email" required />
+        <textarea placeholder="Кратко о цели обучения"></textarea>
+        <button class="btn btn-primary" type="submit">Отправить запрос</button>
+      </form>
+
+      <div style="margin-top:16px">
+        <small style="color:#4b626a">Пробный урок — 30 минут. Первое занятие со скидкой.</small>
+      </div>
+
+    </aside>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
