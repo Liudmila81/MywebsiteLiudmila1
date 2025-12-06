@@ -306,7 +306,81 @@
       </a>
     </div>
   </section>
+<section id="slot" onclick="document.getElementById('slot-btn').click()" style="margin:60px auto; text-align:center; max-width:700px;">
+<h2>Испытай удачу 🎰</h2>
+<p style="font-size:18px;">Нажми на кнопку — и получи приз!<br>Использовать слот можно только один раз 😉</p>
 
+
+<div id="slot-window" style="
+display:flex;
+justify-content:center;
+gap:20px;
+margin:30px auto;
+padding:20px;
+width:100%;
+max-width:500px;
+background:#fff3d6;
+border-radius:20px;
+border:3px solid #ffb347;
+box-shadow:0 6px 18px rgba(0,0,0,0.15);
+font-size:40px;
+font-family:Georgia, serif;
+">
+<div>🎁</div>
+<div>🎁</div>
+<div>🎁</div>
+</div>
+
+
+<button id="slot-btn" style="font-size:20px; padding:12px 24px; border-radius:12px; cursor:pointer; background:#ff7a00; color:white; border:none;">Крутить слот 🎉</button>
+
+
+<p id="slot-result" style="margin-top:20px; font-size:22px; font-weight:bold; color:#ff7a00;"></p>
+</section>
+
+
+<script>
+let slotUsed = false;
+const prizes = [
+"🎉 Скидка на первый месяц 10%",
+"🎁 Бесплатный урок",
+"📘 Скидка на второе занятие 5%",
+"💸 Скидка на первый месяц 15%",
+"🚗 Скидка на первый месяц 15%"
+];
+
+
+document.getElementById('slot-btn').onclick = function() {
+if (slotUsed) return;
+
+
+slotUsed = true;
+const btn = document.getElementById('slot-btn');
+const result = document.getElementById('slot-result');
+const symbols = document.querySelectorAll('#slot-window div');
+
+
+btn.style.opacity = '0.5';
+btn.style.cursor = 'not-allowed';
+btn.innerText = 'Уже использовано';
+
+
+let spins = 20;
+const spinInterval = setInterval(() => {
+symbols.forEach(s => {
+s.innerText = prizes[Math.floor(Math.random() * prizes.length)].split(" ")[0];
+});
+if (--spins <= 0) {
+clearInterval(spinInterval);
+const finalPrize = prizes[Math.floor(Math.random() * prizes.length)];
+symbols.forEach(s => {
+s.innerText = finalPrize.split(" ")[0];
+});
+result.innerText = finalPrize;
+}
+}, 100);
+};
+</script>
 </div>
 
 </body>
